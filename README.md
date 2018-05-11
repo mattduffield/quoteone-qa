@@ -1,1 +1,0 @@
-# quoteone-qa
