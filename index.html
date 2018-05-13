@@ -57,6 +57,19 @@
 
     <script src="https://cdn.auth0.com/js/auth0/9.3.1/auth0.min.js"></script>
     <script src="vendor-bundle.js"></script>
-    <script>SystemJS.import("aurelia-bootstrapper").catch(function(err) { console.log(err); })</script>
+    <script>
+      // SystemJS.import("aurelia-bootstrapper").catch(function(err) { console.log(err); });
+      function patchDefaultLoader(DefaultLoader) {
+        // fix issue where the map function was using `System.map[id] = source`
+        // https://github.com/aurelia/loader-default/blob/1.0.0/src/index.js#L222
+        DefaultLoader.prototype.map = function(id, source) {
+          // System.map[id] = source;                 // <--- original
+          System.config({ map: { [id]: source } });   // <--- fix
+        };
+      }  
+      System.import('aurelia-loader-default')
+        .then(({ DefaultLoader }) => patchDefaultLoader(DefaultLoader))
+        .then(() => System.import('aurelia-bootstrapper'));
+    </script>
   </body>
 </html>
