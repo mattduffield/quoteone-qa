@@ -5554,95 +5554,26 @@ define('resources/attributes/input-mask/input-mask',['exports', 'aurelia-framewo
   })), _class2)) || _class);
 });
 define('nav-bar.html!text', ['module'], function(module) { module.exports = "<template bindable=router><nav class=\"navbar navbar-default navbar-fixed-top\" role=navigation><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#skeleton-navigation-navbar-collapse><span class=sr-only>Toggle Navigation</span><span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button><a class=navbar-brand href=#><i class=\"fa fa-home\"></i><span>${router.title}</span></a></div><div class=\"collapse navbar-collapse\" id=skeleton-navigation-navbar-collapse><ul class=\"nav navbar-nav\"><li repeat.for=\"row of router.navigation\" class=\"${row.isActive ? 'active' : ''}\"><a data-toggle=collapse data-target=#skeleton-navigation-navbar-collapse.in href.bind=row.href>${row.title}</a></li></ul><ul class=\"nav navbar-nav navbar-right\"><li class=loader if.bind=router.isNavigating><i class=\"fa fa-spinner fa-spin fa-2x\"></i></li></ul></div></nav></template>"; });
-define('main',['exports', 'aurelia-pal', 'bluebird', 'babel-polyfill'], function (exports, _aureliaPal, _bluebird) {
+define('main',['exports'], function (exports) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.configure = undefined;
+  exports.configure = configure;
+  function configure(aurelia) {
+    aurelia.use.standardConfiguration().developmentLogging().feature('resources').plugin('aurelia-dialog', function (config) {
+      config.useDefaults();
+      config.settings.lock = true;
+      config.settings.centerHorizontalOnly = false;
+      config.settings.startingZIndex = 5;
+      config.settings.keyboard = true;
+    });
 
-  var Bluebird = _interopRequireWildcard(_bluebird);
-
-  function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-      return obj;
-    } else {
-      var newObj = {};
-
-      if (obj != null) {
-        for (var key in obj) {
-          if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-        }
-      }
-
-      newObj.default = obj;
-      return newObj;
-    }
+    aurelia.start().then(function (a) {
+      return a.setRoot();
+    });
   }
-
-  function _asyncToGenerator(fn) {
-    return function () {
-      var gen = fn.apply(this, arguments);
-      return new Promise(function (resolve, reject) {
-        function step(key, arg) {
-          try {
-            var info = gen[key](arg);
-            var value = info.value;
-          } catch (error) {
-            reject(error);
-            return;
-          }
-
-          if (info.done) {
-            resolve(value);
-          } else {
-            return Promise.resolve(value).then(function (value) {
-              step("next", value);
-            }, function (err) {
-              step("throw", err);
-            });
-          }
-        }
-
-        return step("next");
-      });
-    };
-  }
-
-  var configure = exports.configure = function () {
-    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(aurelia) {
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              aurelia.use.standardConfiguration().developmentLogging().feature('resources').plugin('aurelia-dialog', function (config) {
-                config.useDefaults();
-                config.settings.lock = true;
-                config.settings.centerHorizontalOnly = false;
-                config.settings.startingZIndex = 5;
-                config.settings.keyboard = true;
-              });
-
-              _context.next = 3;
-              return aurelia.start();
-
-            case 3:
-              _context.next = 5;
-              return aurelia.setRoot(_aureliaPal.PLATFORM.moduleName('app'));
-
-            case 5:
-            case 'end':
-              return _context.stop();
-          }
-        }
-      }, _callee, this);
-    }));
-
-    return function configure(_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
 });
 define('environment',["exports"], function (exports) {
   "use strict";
