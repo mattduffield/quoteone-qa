@@ -3,7 +3,7 @@
   <head>
     <title>quoteone</title>
     
-    <base href="https://mattduffield.github.io/quoteone/">    
+    <base href="https://mattduffield.github.io/quoteone-qa/">    
     
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +56,7 @@
     <h1 class="loading">Loading...</h1>
 
     <script src="https://cdn.auth0.com/js/auth0/9.3.1/auth0.min.js"></script>
-    <script src="https://unpkg.com/systemjs@0.19.41/dist/system.js"></script>
-    <script src="systemjs.config.js"></script>
+    <script src="vendor-bundle.js"></script>
+    <script>SystemJS.import("aurelia-bootstrapper").catch(function(err) { console.log(err); })</script>
   </body>
 </html>
