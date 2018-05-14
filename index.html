@@ -3,7 +3,8 @@
   <head>
     <title>quoteone</title>
     
-    <base href="https://mattduffield.github.io/quoteone-qa/">    
+    <!-- <base href="https://mattduffield.github.io/quoteone-qa/">     -->
+    <base href="/">
     
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,7 +59,6 @@
     <script src="https://cdn.auth0.com/js/auth0/9.3.1/auth0.min.js"></script>
     <script src="scripts/vendor-bundle.js"></script>
     <script>
-      // SystemJS.import("aurelia-bootstrapper").catch(function(err) { console.log(err); });
       function patchDefaultLoader(DefaultLoader) {
         // fix issue where the map function was using `System.map[id] = source`
         // https://github.com/aurelia/loader-default/blob/1.0.0/src/index.js#L222
