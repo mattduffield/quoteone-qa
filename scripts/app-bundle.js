@@ -2268,7 +2268,7 @@ define('services/session-service',['exports', 'aurelia-framework', 'aurelia-rout
       this.auth0 = new auth0.WebAuth({
         domain: 'quote1ins.auth0.com',
         clientID: 'hy9l2I2xghH3f5_eiwGJqiVKEVdhGdce',
-        redirectUri: 'https://mattduffield.github.io/quoteone-dev/callback',
+        redirectUri: 'https://mattduffield.github.io/quoteone-qa/callback',
 
         audience: 'https://quote1ins.auth0.com/userinfo',
         responseType: 'token id_token',
@@ -2330,7 +2330,7 @@ define('services/session-service',['exports', 'aurelia-framework', 'aurelia-rout
       this.messageBus.publish('authChange', { authenticated: false });
       var origin = window.location.origin;
 
-      var href = origin + '/quoteone-dev';
+      var href = origin + '/quoteone-qa';
 
       window.location.href = href;
     };
@@ -6618,7 +6618,7 @@ define('app',['exports', 'aurelia-router', './resources/elements/notifier/notifi
       };
       config.title = 'QuoteOne';
       config.options.pushState = true;
-      config.options.root = '/quoteone-dev/';
+      config.options.root = '/quoteone-qa/';
 
       config.addPipelineStep('authorize', _authorizeStep.AuthorizeStep);
 
